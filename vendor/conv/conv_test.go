@@ -18,9 +18,9 @@ func TestHexToBase64(t *testing.T) {
 		}
 	})
 
-	t.Run("Valid hex passed", func(t *testing.T) {
+	t.Run("Valid mixed-case hex passed", func(t *testing.T) {
 		//These strings are pulled from the crypto pals challenge page
-		hb := []byte("ffffffffffff")
+		hb := []byte("FfFfFfFfFfFf")
 		expected := "////////"
 		ret, err := HexToBase64(hb)
 		if err != nil {
