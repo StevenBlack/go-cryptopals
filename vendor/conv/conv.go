@@ -1,4 +1,4 @@
-// Conversion functions
+// Package conv contains various conversion functions.
 package conv
 
 import (
@@ -28,7 +28,35 @@ func HexToBase64(hexBytes []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
-
 	ret := encodeToBase64(b)
+	return ret, nil
+}
+
+// HexStringToBase64String takes a string representation of Hex,
+// returns a string representation of base64
+func HexStringToBase64String(hexString string) (string, error) {
+	b, err := HexToBase64([]byte(hexString))
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
+}
+
+// HexXOR takes two equal length strings and BitwiseXOR's them together
+// returns the result as string.
+func HexXOR(hexString1, hexString2 string) (string, error) {
+	b1, err := decodeHexBytes([]byte(hexString1))
+	if err != nil {
+		return "", err
+	}
+	b2, err := decodeHexBytes([]byte(hexString2))
+	if err != nil {
+		return "", err
+	}
+	out := []byte{}
+	for i, b1b := range b1 {
+		out = append(out, b1b^b2[i])
+	}
+	ret := hex.EncodeToString(out)
 	return ret, nil
 }
