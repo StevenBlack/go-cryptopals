@@ -33,7 +33,7 @@ func HexToBase64(hexBytes []byte) ([]byte, error) {
 }
 
 // HexStringToBase64String takes a string representation of Hex,
-// returns a string representation of base64
+// returns a string representation of base64.
 func HexStringToBase64String(hexString string) (string, error) {
 	b, err := HexToBase64([]byte(hexString))
 	if err != nil {
@@ -43,7 +43,7 @@ func HexStringToBase64String(hexString string) (string, error) {
 }
 
 // HexXOR takes two equal length strings and BitwiseXOR's them together
-// returns the result as string.
+// returns the result as string. Presumes both input strings are equal length.
 func HexXOR(hexString1, hexString2 string) (string, error) {
 	b1, err := decodeHexBytes([]byte(hexString1))
 	if err != nil {
